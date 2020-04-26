@@ -1,0 +1,34 @@
+<h1>Welcome</h1>
+<div class="play-container">
+    <p>You've clicked <span (click)="countClick()">this</span> {{clickCounter}} times</p>
+</div> 
+
+<div class="play-container">
+    <p>
+        <input type="text" [(ngModel)]="name">
+        <br>
+        <strong>You said: {{name}} </strong>
+    </p>
+</div>
+
+<!-- FIRST variant to conditionally change style -->
+<!-- <div class="play-container" [style.background-color]="clickCounter > 5 ? 'yellow' : 'lightgray'" > -->
+<!-- SECOND: ngStyle-->
+<!-- <div class="play-container" [ngStyle]="{
+    'background-color': clickCounter > 5 ? 'yellow' : 'lightgray',
+    'border' : clickCounter > 5 ? '4px solid red' : none
+}" > -->
+<!-- THIRD css class binding  -->
+<!-- <div class="play-container" [class.activated]="clickCounter > 5" >  -->
+<!-- FOUR multiple class binding -->
+
+<div class="play-container" [ngClass]="setClasses()" >
+
+    <ng-template [ngIf]="clickCounter > 5" [ngIfElse]="none">
+        <p> Click counter is <b>GREATER THAN 5</b></p>
+    </ng-template>
+    
+    <ng-template #none> 
+        <p> Click counter is <b>less than 5</b></p>
+    </ng-template>
+</div> 
